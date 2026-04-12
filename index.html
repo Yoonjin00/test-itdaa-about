@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>잇다 — 120개 대학이 선택한 커리어 교육 파트너</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #FF5C5C;
+      --red-dark: #E03E3E;
+      --red-light: #FFF0F0;
+      --red-mid: #FFE0E0;
+      --text: #111827;
+      --text-secondary: #6B7280;
+      --text-light: #9CA3AF;
+      --border: #E5E7EB;
+      --bg: #FFFFFF;
+      --bg-alt: #F9FAFB;
+      --bg-dark: #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo { font-size: 1.6rem; font-weight: 900; color: var(--red); text-decoration: none; letter-spacing: -0.5px; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .btn-red {
+      background: var(--red); color: #fff; padding: 0.55rem 1.3rem;
+      border-radius: 8px; font-size: 0.9rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #fff 0%, var(--red-light) 100%);
+      padding: 90px 6% 80px;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: #fff;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px;
+      padding: 6px 16px; border-radius: 99px; margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900; letter-spacing: -1.5px; line-height: 1.2;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em { color: var(--red); font-style: normal; }
+    .hero-sub {
+      color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85;
+      max-width: 620px; margin-bottom: 3rem;
+    }
+    .hero-kpis {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+      margin-top: 3rem;
+    }
+    .kpi {
+      background: #fff; border-radius: 16px; padding: 24px 16px;
+      text-align: center; border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .kpi-num { font-size: 1.6rem; font-weight: 900; color: var(--red); letter-spacing: -1px; line-height: 1.1; }
+    .kpi-label { font-size: 0.78rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; word-keep: keep-all; }
+
+    /* ── SECTION COMMONS ── */
+    .section { padding: 96px 6%; max-width: 1200px; margin: 0 auto; }
+    .full-section { padding: 96px 6%; }
+    .full-section .inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; color: var(--red);
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 900; letter-spacing: -0.8px; margin-bottom: 16px;
+    }
+    .section-desc {
+      color: var(--text-secondary); font-size: 1.05rem;
+      line-height: 1.85; max-width: 580px;
+    }
+    .divider { width: 48px; height: 4px; background: var(--red); border-radius: 2px; margin: 20px 0; }
+
+    /* ── PROBLEM ── */
+    .problem-section { background: var(--bg-dark); padding: 96px 6%; }
+    .problem-section .inner { max-width: 1200px; margin: 0 auto; }
+    .problem-section .section-tag { color: #FF8A8A; }
+    .problem-section .section-title { color: #fff; }
+    .problem-section .section-desc { color: rgba(255,255,255,0.6); }
+    .problem-section .divider { background: var(--red); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      margin-top: 52px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 36px 28px;
+      transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-card-num {
+      font-size: 2.6rem; font-weight: 900; color: var(--red);
+      letter-spacing: -1px; line-height: 1;
+    }
+    .stat-card-title { font-size: 1rem; font-weight: 800; color: #fff; margin: 12px 0 8px; }
+    .stat-card-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; margin-top: 0;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--red-light), var(--red-mid));
+      border-radius: 28px; padding: 48px 40px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .about-pill {
+      background: #fff; border-radius: 12px; padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 4px 16px rgba(255,92,92,0.1);
+    }
+    .about-pill-icon { font-size: 1.5rem; }
+    .about-pill-text strong { font-size: 0.95rem; font-weight: 800; display: block; }
+    .about-pill-text span { font-size: 0.82rem; color: var(--text-secondary); }
+    .about-points { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .about-point { display: flex; gap: 14px; align-items: flex-start; }
+    .about-point-dot {
+      width: 8px; height: 8px; background: var(--red); border-radius: 50%;
+      margin-top: 8px; flex-shrink: 0;
+    }
+    .about-point-text { font-size: 0.95rem; line-height: 1.75; color: var(--text-secondary); }
+
+    /* ── NUMBERS ── */
+    .numbers-section { background: var(--red); padding: 80px 6%; }
+    .numbers-section .inner { max-width: 1200px; margin: 0 auto; }
+    .numbers-section .section-tag { color: rgba(255,255,255,0.7); }
+    .numbers-section .section-title { color: #fff; }
+    .numbers-section .divider { background: rgba(255,255,255,0.4); }
+    .numbers-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+      margin-top: 48px;
+    }
+    .num-card {
+      background: rgba(255,255,255,0.15); border-radius: 16px;
+      padding: 28px 16px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s;
+    }
+    .num-card:hover { background: rgba(255,255,255,0.25); }
+    .num-card-num { font-size: 1.8rem; font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.1; }
+    .num-card-label { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.4; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      margin-top: 52px;
+    }
+    .service-card {
+      background: var(--bg-alt); border-radius: 20px;
+      padding: 36px 28px; border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(255,92,92,0.12);
+      border-color: var(--red);
+    }
+    .service-icon {
+      width: 56px; height: 56px; background: var(--red-light);
+      border-radius: 14px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.6rem; margin-bottom: 20px;
+    }
+    .service-title { font-size: 1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
+    .service-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .service-tag {
+      background: var(--red-light); color: var(--red);
+      font-size: 0.75rem; font-weight: 700; padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* ── SOLUTION ── */
+    .solution-section { background: var(--bg-alt); padding: 96px 6%; }
+    .solution-section .inner { max-width: 1200px; margin: 0 auto; }
+    .steps-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 52px; position: relative;
+    }
+    .steps-row::before {
+      content: '';
+      position: absolute; top: 40px; left: 10%; right: 10%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #FF9F9F);
+      z-index: 0;
+    }
+    .step { text-align: center; position: relative; z-index: 1; padding: 0 12px; }
+    .step-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: #fff; border: 3px solid var(--red);
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(255,92,92,0.2);
+    }
+    .step-circle .step-num { font-size: 0.65rem; font-weight: 800; color: var(--red); letter-spacing: 0.5px; }
+    .step-circle .step-emoji { font-size: 1.4rem; line-height: 1; }
+    .step-keyword {
+      display: inline-block; background: var(--red); color: #fff;
+      font-size: 0.72rem; font-weight: 800; padding: 3px 10px;
+      border-radius: 99px; margin-bottom: 10px;
+    }
+    .step-title { font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+    .step-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── UNIVERSITIES ── */
+    .univ-intro { color: var(--text-secondary); font-size: 1rem; margin-top: 8px; margin-bottom: 40px; }
+    .univ-tiers { display: flex; flex-direction: column; gap: 20px; }
+    .univ-tier-label { font-size: 0.8rem; font-weight: 700; color: var(--red); margin-bottom: 10px; letter-spacing: 0.5px; }
+    .univ-list {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .univ-chip {
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 0.9rem; font-weight: 600; color: var(--text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .univ-chip:hover { border-color: var(--red); color: var(--red); }
+    .univ-more {
+      background: var(--red-light); border: 1px solid var(--red-mid);
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 0.9rem; font-weight: 700; color: var(--red);
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: linear-gradient(160deg, var(--bg-dark) 0%, #1f2937 100%);
+      padding: 96px 6%;
+    }
+    .contact-section .inner { max-width: 1200px; margin: 0 auto; }
+    .contact-section .section-tag { color: #FF8A8A; }
+    .contact-section .section-title { color: #fff; }
+    .contact-section .divider { background: var(--red); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 52px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon {
+      width: 48px; height: 48px; background: rgba(255,92,92,0.15);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-item-title { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+    .contact-item-value { font-size: 1rem; font-weight: 700; color: #fff; }
+    .contact-item-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .contact-form {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 36px;
+    }
+    .contact-form h3 { color: #fff; font-size: 1.1rem; font-weight: 800; margin-bottom: 24px; }
+    .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+    .form-input {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px; padding: 14px 16px;
+      color: #fff; font-size: 0.92rem; outline: none;
+      font-family: inherit; transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus { border-color: var(--red); }
+    .form-textarea {
+      resize: vertical; min-height: 100px;
+    }
+    .btn-submit {
+      width: 100%; background: var(--red); color: #fff;
+      border: none; border-radius: 10px; padding: 14px;
+      font-size: 1rem; font-weight: 800; cursor: pointer;
+      margin-top: 4px; font-family: inherit;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0f1a; padding: 40px 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-left .footer-logo { font-size: 1.2rem; font-weight: 900; color: var(--red); }
+    .footer-left p { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-top: 6px; }
+    .footer-right { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-kpis { grid-template-columns: repeat(3, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps-row::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 5%; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 5%; }
+      .hero-kpis { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 64px 5%; }
+      .full-section { padding: 64px 5%; }
+      .problem-section, .numbers-section, .solution-section, .contact-section { padding: 64px 5%; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-kpis { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="logo">잇다</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">서비스 소개</a></li>
+      <li><a href="#services">제공 서비스</a></li>
+      <li><a href="#solution">솔루션</a></li>
+      <li><a href="#universities">제휴 대학</a></li>
+    </ul>
+    <a href="#contact" class="btn-red">제휴 문의</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🏫 대학·기관 전용 커리어 교육 플랫폼</div>
+    <h1>
+      <em>120개 대학</em>이 선택한<br>
+      커리어 교육 파트너,<br>
+      잇다
+    </h1>
+    <p class="hero-sub">
+      실명 현직자 네트워크 기반의 커리어 교육 플랫폼 잇다는<br>
+      대학 취업팀·기관 교육 담당자와 함께 학생들의 진로를 설계합니다.<br>
+      데이터로 증명된 성과, 신뢰할 수 있는 파트너십.
+    </p>
+    <a href="#contact" class="btn-red" style="display:inline-block; padding: 1rem 2rem; font-size:1rem; border-radius:12px;">지금 제휴 문의하기 →</a>
+    <div class="hero-kpis">
+      <div class="kpi">
+        <div class="kpi-num">120+</div>
+        <div class="kpi-label">전국 제휴 대학</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">40만+</div>
+        <div class="kpi-label">가입 회원</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">3,500+</div>
+        <div class="kpi-label">현직자 멘토</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">4만+</div>
+        <div class="kpi-label">누적 멘토링</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">15,000+</div>
+        <div class="kpi-label">클래스 진행</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">4.8점</div>
+        <div class="kpi-label">평균 만족도</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ── -->
+<section class="problem-section">
+  <div class="inner">
+    <span class="section-tag">The Problem</span>
+    <h2 class="section-title">대학생 커리어 현실</h2>
+    <div class="divider"></div>
+    <p class="section-desc">
+      국내 대학생의 진로 불안은 수치로 드러납니다.<br>
+      잇다는 이 문제를 데이터 기반으로 직시하고, 구조적으로 해결합니다.
+    </p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-num">64.6%</div>
+        <div class="stat-card-title">대졸자 취업률</div>
+        <div class="stat-card-desc">10명 중 3~4명은 졸업 후에도 취업 트랙을 찾지 못하는 현실</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">50만</div>
+        <div class="stat-card-title">쉬는 청년</div>
+        <div class="stat-card-desc">취업도 구직활동도 하지 않는 청년이 50만 명을 넘어선 상황</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">46.9%</div>
+        <div class="stat-card-title">진로 미결정률</div>
+        <div class="stat-card-desc">대학 재학생 절반 가까이가 졸업까지 진로를 결정하지 못함</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">90%</div>
+        <div class="stat-card-title">취업 스트레스</div>
+        <div class="stat-card-desc">대학생 10명 중 9명이 취업과 진로로 인한 심각한 스트레스 경험</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div>
+      <span class="section-tag">About 잇다</span>
+      <h2 class="section-title">실명 현직자 네트워크로<br>진짜 커리어 교육을</h2>
+      <div class="divider"></div>
+      <p class="section-desc">
+        잇다는 국내 유일의 실명 기반 커리어 교육 플랫폼입니다.<br>
+        익명이 아닌 신원이 인증된 현직자 멘토들과 학생을 연결해,<br>
+        실질적인 직무 경험과 커리어 인사이트를 제공합니다.
+      </p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="about-point-dot"></div>
+          <div class="about-point-text"><strong>실명·재직 인증 멘토</strong> — 모든 멘토는 현직 인증을 거쳐 신뢰도를 보장합니다.</div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-dot"></div>
+          <div class="about-point-text"><strong>데이터 기반 맞춤 설계</strong> — AI 진로 진단부터 직무 학습까지 단계별 커리큘럼을 제공합니다.</div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-dot"></div>
+          <div class="about-point-text"><strong>대학 맞춤 운영 지원</strong> — 학교별 특성과 수요에 맞는 커스텀 프로그램을 운영합니다.</div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-dot"></div>
+          <div class="about-point-text"><strong>성과 측정 리포트</strong> — 학생 참여율, 만족도, 취업 전환율 등 정량 데이터를 제공합니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-pill">
+        <div class="about-pill-icon">✅</div>
+        <div class="about-pill-text">
+          <strong>실명 인증 완료</strong>
+          <span>카카오 · 시니어 프로덕트 매니저 6년</span>
+        </div>
+      </div>
+      <div class="about-pill">
+        <div class="about-pill-icon">📊</div>
+        <div class="about-pill-text">
+          <strong>AI 진로 진단 결과</strong>
+          <span>적합 직무 · 성향 분석 · 성장 로드맵</span>
+        </div>
+      </div>
+      <div class="about-pill">
+        <div class="about-pill-icon">🏫</div>
+        <div class="about-pill-text">
+          <strong>대학 전용 대시보드</strong>
+          <span>참여 현황 · 만족도 · 취업 전환율 리포트</span>
+        </div>
+      </div>
+      <div class="about-pill">
+        <div class="about-pill-icon">🎯</div>
+        <div class="about-pill-text">
+          <strong>직무 부트캠프 수료</strong>
+          <span>UX 디자인 트랙 · 수료율 94%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUMBERS ── -->
+<section class="numbers-section">
+  <div class="inner">
+    <span class="section-tag">By the Numbers</span>
+    <h2 class="section-title" style="color:#fff;">숫자로 보는 잇다</h2>
+    <div class="divider"></div>
+    <div class="numbers-grid">
+      <div class="num-card">
+        <div class="num-card-num">120+</div>
+        <div class="num-card-label">전국 제휴 대학</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-num">15,000+</div>
+        <div class="num-card-label">클래스 진행 횟수</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-num">4,000+</div>
+        <div class="num-card-label">커리어 콘텐츠</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-num">30만+</div>
+        <div class="num-card-label">온라인 참여자</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-num">3,500+</div>
+        <div class="num-card-label">현직자 멘토</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-num">40만+</div>
+        <div class="num-card-label">가입 회원</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="section" id="services">
+  <span class="section-tag">Services</span>
+  <h2 class="section-title">4가지 핵심 서비스</h2>
+  <div class="divider"></div>
+  <p class="section-desc">대학 취업팀과 기관의 니즈에 맞는 다양한 커리어 교육 프로그램을 제공합니다.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎤</div>
+      <div class="service-title">현직자 직무특강 · 직무체험</div>
+      <div class="service-desc">국내 주요 기업 현직자가 직접 진행하는 직무별 특강과 체험 프로그램. 학생들이 현장 언어로 직무를 이해합니다.</div>
+      <div class="service-tags">
+        <span class="service-tag">오프라인</span>
+        <span class="service-tag">온라인</span>
+        <span class="service-tag">맞춤 기획</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <div class="service-title">현직자 직무 부트캠프</div>
+      <div class="service-desc">단기 집중형 직무 부트캠프. 현직자 강사진과 함께 실무 프로젝트를 수행하며 포트폴리오를 완성합니다.</div>
+      <div class="service-tags">
+        <span class="service-tag">4~8주 과정</span>
+        <span class="service-tag">실무 프로젝트</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <div class="service-title">AI 진단검사 · 제휴 서비스</div>
+      <div class="service-desc">AI 기반 진로·직무 적합도 진단 검사와 다양한 제휴 서비스 연계. 학생 개별 맞춤 커리어 로드맵을 설계합니다.</div>
+      <div class="service-tags">
+        <span class="service-tag">AI 진단</span>
+        <span class="service-tag">리포트 제공</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📚</div>
+      <div class="service-title">맞춤형 교육과정 설계</div>
+      <div class="service-desc">대학·기관의 특성과 학생 수요를 반영한 커스텀 커리큘럼. 학기 단위 운영부터 특별 프로그램까지 전담 지원합니다.</div>
+      <div class="service-tags">
+        <span class="service-tag">커스텀 설계</span>
+        <span class="service-tag">전담 운영</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTION ── -->
+<section class="solution-section" id="solution">
+  <div class="inner">
+    <span class="section-tag">Solution</span>
+    <h2 class="section-title">4단계 커리어 솔루션</h2>
+    <div class="divider"></div>
+    <p class="section-desc">발견부터 경험까지, 잇다의 단계별 커리어 성장 프로세스를 학생들에게 제공합니다.</p>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-num">STEP 1</span>
+          <span class="step-emoji">🔍</span>
+        </div>
+        <span class="step-keyword">발견</span>
+        <div class="step-title">AI 진로검사</div>
+        <div class="step-desc">AI 기반 진로·직무 적합도 진단으로 나만의 강점과 방향을 발견합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-num">STEP 2</span>
+          <span class="step-emoji">💬</span>
+        </div>
+        <span class="step-keyword">탐색</span>
+        <div class="step-title">현직자 멘토링</div>
+        <div class="step-desc">실명 현직자와의 1:1 멘토링으로 관심 직무를 깊이 탐색합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-num">STEP 3</span>
+          <span class="step-emoji">📖</span>
+        </div>
+        <span class="step-keyword">학습</span>
+        <div class="step-title">직무강의 · 체험</div>
+        <div class="step-desc">직무 특강과 체험 프로그램으로 실무 지식을 쌓고 현장을 경험합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-num">STEP 4</span>
+          <span class="step-emoji">💼</span>
+        </div>
+        <span class="step-keyword">경험</span>
+        <div class="step-title">직무 부트캠프</div>
+        <div class="step-desc">집중 부트캠프로 실무 프로젝트를 완성하고 취업 경쟁력을 확보합니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── UNIVERSITIES ── -->
+<section class="section" id="universities">
+  <span class="section-tag">Partners</span>
+  <h2 class="section-title">함께하는 제휴 대학</h2>
+  <div class="divider"></div>
+  <p class="univ-intro">전국 120개 이상의 대학이 잇다와 함께 학생들의 커리어 교육을 혁신하고 있습니다.</p>
+  <div class="univ-tiers">
+    <div>
+      <div class="univ-tier-label">서울 주요 대학</div>
+      <div class="univ-list">
+        <span class="univ-chip">고려대학교</span>
+        <span class="univ-chip">연세대학교</span>
+        <span class="univ-chip">성균관대학교</span>
+        <span class="univ-chip">한양대학교</span>
+        <span class="univ-chip">중앙대학교</span>
+        <span class="univ-chip">경희대학교</span>
+        <span class="univ-chip">한국외국어대학교</span>
+        <span class="univ-chip">서울시립대학교</span>
+        <span class="univ-chip">숙명여자대학교</span>
+        <span class="univ-chip">동국대학교</span>
+        <span class="univ-chip">건국대학교</span>
+        <span class="univ-chip">홍익대학교</span>
+      </div>
+    </div>
+    <div>
+      <div class="univ-tier-label">수도권 · 지방 대학</div>
+      <div class="univ-list">
+        <span class="univ-chip">인하대학교</span>
+        <span class="univ-chip">아주대학교</span>
+        <span class="univ-chip">한국항공대학교</span>
+        <span class="univ-chip">가천대학교</span>
+        <span class="univ-chip">부산대학교</span>
+        <span class="univ-chip">경북대학교</span>
+        <span class="univ-chip">전남대학교</span>
+        <span class="univ-chip">충남대학교</span>
+        <span class="univ-chip">강원대학교</span>
+        <span class="univ-chip">제주대학교</span>
+        <span class="univ-chip">한림대학교</span>
+        <span class="univ-chip">영남대학교</span>
+        <span class="univ-more">+ 100개교 이상</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div class="inner">
+    <span class="section-tag">Contact</span>
+    <h2 class="section-title" style="color:#fff;">제휴 문의</h2>
+    <div class="divider"></div>
+    <p class="section-desc" style="color:rgba(255,255,255,0.6);">
+      대학 취업팀 및 교육 기관 담당자라면 지금 바로 문의해 주세요.<br>
+      맞춤형 제안서와 함께 전담 매니저가 연락드립니다.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-title">전화 문의</div>
+            <div class="contact-item-value">02-2653-1022</div>
+            <div class="contact-item-sub">평일 09:00 – 18:00</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-title">이메일 문의</div>
+            <div class="contact-item-value">bd@itdaa.net</div>
+            <div class="contact-item-sub">24시간 접수, 1영업일 내 회신</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-title">주소</div>
+            <div class="contact-item-value" style="font-size:0.92rem; line-height:1.6;">서울특별시 성동구 뚝섬로1나길 5<br>헤이그라운드 성수시작점 G402호</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>빠른 문의 남기기</h3>
+        <div class="form-row">
+          <input class="form-input" type="text" placeholder="담당자 성함" />
+          <input class="form-input" type="text" placeholder="소속 대학 / 기관명" />
+        </div>
+        <div class="form-row">
+          <input class="form-input" type="email" placeholder="이메일 주소" />
+          <input class="form-input" type="tel" placeholder="연락처" />
+        </div>
+        <textarea class="form-input form-textarea" placeholder="문의 내용을 간략히 적어주세요"></textarea>
+        <button class="btn-submit">제휴 문의 보내기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo">잇다</div>
+    <p>국내 유일 실명 기반 커리어 교육 플랫폼 · 사업자등록번호 123-45-67890</p>
+  </div>
+  <div class="footer-right">© 2026 잇다. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
