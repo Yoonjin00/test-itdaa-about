@@ -1,171 +1,640 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>잇다 - 대학·기관 전용 커리어 교육 플랫폼</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        header { text-align: center; }
-        nav ul { list-style: none; padding: 0; }
-        nav li { display: inline; margin: 0 10px; }
-        section { margin: 40px 0; }
-        h2, h3 { color: #333; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 5px 0; }
-        .service, .step { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>잇다 — 120개 대학이 선택한 커리어 교육 파트너</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:     #FF4040;
+      --red-h:   #E52E2E;
+      --red-bg:  #FFF2F2;
+      --white:   #FFFFFF;
+      --text:    #222222;
+      --sub:     #888888;
+      --card-bg: #F8F8F8;
+      --border:  #EBEBEB;
+      --gray-bg: #F5F5F5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━ NAV ━━━━━━━━━━━━━━━━━━ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex; align-items: center;
+      padding: 0 max(40px, 7%);
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--red); text-decoration: none;
+      letter-spacing: -0.5px; line-height: 1;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2.4rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--sub);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.18s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .btn { display: inline-block; text-decoration: none; font-family: inherit; cursor: pointer; }
+    .btn-red {
+      background: var(--red); color: #fff;
+      padding: 0.55rem 1.3rem; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 700; border: none;
+      transition: background 0.18s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-red:hover { background: var(--red-h); transform: translateY(-1px); }
+
+    /* ━━━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━━━ */
+    .hero {
+      background: var(--white);
+      padding: 88px max(40px, 7%) 80px;
+    }
+    .hero-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--red-bg); color: var(--red);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.8px;
+      padding: 5px 13px; border-radius: 99px; margin-bottom: 1.6rem;
+    }
+    .hero-label::before { content:''; width:6px; height:6px; background:var(--red); border-radius:50%; }
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      font-weight: 900; letter-spacing: -1.5px; line-height: 1.2;
+      color: var(--text); margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--red); }
+    .hero-desc {
+      color: var(--sub); font-size: 1.02rem;
+      line-height: 1.9; margin-bottom: 2.4rem;
+    }
+    .btn-red-lg {
+      padding: 0.9rem 2rem; border-radius: 8px;
+      font-size: 1rem; font-weight: 700;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .hero-card {
+      background: var(--card-bg); border-radius: 12px;
+      padding: 24px 18px; border: 1px solid var(--border);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .hero-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .hero-card-num {
+      font-size: 1.75rem; font-weight: 900;
+      color: var(--red); letter-spacing: -1px; line-height: 1;
+    }
+    .hero-card-label {
+      font-size: 0.78rem; color: var(--sub);
+      margin-top: 6px; font-weight: 500; line-height: 1.4;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━ PROBLEM ━━━━━━━━━━━━━━━━━━ */
+    .problem {
+      background: var(--gray-bg);
+      padding: 80px max(40px, 7%);
+    }
+    .problem-inner { max-width: 1160px; margin: 0 auto; }
+    .sec-header { margin-bottom: 48px; }
+    .sec-tag {
+      display: inline-block; color: var(--red);
+      font-size: 0.73rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 900; letter-spacing: -1px; line-height: 1.2;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .sec-desc { color: var(--sub); font-size: 0.97rem; line-height: 1.85; }
+
+    .prob-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .prob-card {
+      background: var(--white); border-radius: 12px;
+      padding: 32px 24px; border: 1px solid var(--border);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .prob-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .prob-num {
+      font-size: 2.8rem; font-weight: 900;
+      color: var(--red); letter-spacing: -2px; line-height: 1;
+    }
+    .prob-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 12px 0 8px; }
+    .prob-desc { font-size: 0.83rem; color: var(--sub); line-height: 1.75; }
+
+    /* ━━━━━━━━━━━━━━━━━━ NUMBERS ━━━━━━━━━━━━━━━━━━ */
+    .numbers-sec {
+      background: var(--white);
+      padding: 80px max(40px, 7%);
+    }
+    .numbers-inner { max-width: 1160px; margin: 0 auto; }
+    .numbers-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+    }
+    .num-card {
+      background: var(--card-bg); border-radius: 12px;
+      padding: 28px 14px; text-align: center;
+      border: 1px solid var(--border);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .num-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .num-card .n { font-size: 1.7rem; font-weight: 900; color: var(--red); letter-spacing: -1px; line-height: 1; }
+    .num-card .l { font-size: 0.75rem; color: var(--sub); margin-top: 7px; line-height: 1.4; }
+
+    /* ━━━━━━━━━━━━━━━━━━ SERVICES ━━━━━━━━━━━━━━━━━━ */
+    .services-sec {
+      background: var(--white);
+      padding: 80px max(40px, 7%);
+      border-top: 1px solid var(--border);
+    }
+    .services-inner { max-width: 1160px; margin: 0 auto; }
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .svc-card {
+      background: var(--card-bg); border-radius: 12px;
+      padding: 32px 24px; border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .svc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(255,64,64,0.1);
+      border-color: var(--red);
+    }
+    .svc-label {
+      font-size: 0.72rem; font-weight: 700; color: var(--red);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .svc-title { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.45; }
+    .svc-desc { font-size: 0.85rem; color: var(--sub); line-height: 1.8; flex: 1; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .svc-tag {
+      background: var(--red-bg); color: var(--red);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 8px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━ SOLUTION ━━━━━━━━━━━━━━━━━━ */
+    .solution-sec {
+      background: var(--red);
+      padding: 80px max(40px, 7%);
+    }
+    .solution-inner { max-width: 1160px; margin: 0 auto; }
+    .solution-sec .sec-tag { color: rgba(255,255,255,0.65); }
+    .solution-sec .sec-title { color: #fff; }
+    .solution-sec .sec-desc { color: rgba(255,255,255,0.65); }
+    .solution-sec .sec-header { margin-bottom: 56px; }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; top: 36px; left: calc(12.5%); right: calc(12.5%);
+      height: 2px; background: rgba(255,255,255,0.25); z-index: 0;
+    }
+    .step { padding: 0 16px; text-align: center; position: relative; z-index: 1; }
+    .step-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.5);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      transition: background 0.22s;
+    }
+    .step:hover .step-circle { background: rgba(255,255,255,0.25); }
+    .step-circle .sn { font-size: 0.58rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.5px; }
+    .step-circle .se { font-size: 1.3rem; line-height: 1; }
+    .step-kw {
+      display: inline-block; background: rgba(255,255,255,0.2);
+      color: #fff; font-size: 0.7rem; font-weight: 700;
+      padding: 3px 11px; border-radius: 99px;
+      margin-bottom: 10px; letter-spacing: 0.3px;
+    }
+    .step-title { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .step-desc { font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.75; }
+
+    /* ━━━━━━━━━━━━━━━━━━ UNIVERSITIES ━━━━━━━━━━━━━━━━━━ */
+    .univ-sec {
+      background: var(--white);
+      padding: 80px max(40px, 7%);
+      border-top: 1px solid var(--border);
+    }
+    .univ-inner { max-width: 1160px; margin: 0 auto; }
+    .univ-count {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red-bg); color: var(--red);
+      font-size: 0.85rem; font-weight: 700;
+      padding: 7px 16px; border-radius: 99px;
+      margin-bottom: 36px;
+    }
+    .univ-group { margin-bottom: 28px; }
+    .univ-group-label {
+      font-size: 0.73rem; font-weight: 700; color: var(--sub);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .univ-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .univ-badge {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 7px 15px;
+      font-size: 0.87rem; font-weight: 600; color: var(--text);
+      transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .univ-badge:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .univ-more {
+      background: var(--red); color: #fff; border: none;
+      border-radius: 8px; padding: 7px 15px;
+      font-size: 0.87rem; font-weight: 700;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━ CONTACT ━━━━━━━━━━━━━━━━━━ */
+    .contact-sec {
+      background: var(--gray-bg);
+      padding: 80px max(40px, 7%);
+    }
+    .contact-inner { max-width: 1160px; margin: 0 auto; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .contact-card {
+      background: var(--white); border-radius: 12px;
+      padding: 36px; border: 1px solid var(--border);
+    }
+    .contact-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 28px; }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .c-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--red-bg); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .c-label { font-size: 0.72rem; font-weight: 700; color: var(--sub); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+    .c-val { font-size: 0.97rem; font-weight: 700; color: var(--text); }
+    .c-sub { font-size: 0.82rem; color: var(--sub); margin-top: 2px; }
+
+    .map-card {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      height: 400px;
+    }
+    #naver-map {
+      width: 100%; height: 100%;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━ */
+    footer {
+      background: #111111;
+      padding: 40px max(40px, 7%);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-size: 1.25rem; font-weight: 900; color: var(--red); margin-bottom: 6px; }
+    .footer-info { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+    /* ━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━ */
+    @media (max-width: 1080px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-grid { grid-template-columns: repeat(3, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 5%; }
+      .nav-links { display: none; }
+      .hero, .problem, .numbers-sec, .services-sec,
+      .solution-sec, .univ-sec, .contact-sec { padding: 60px 5%; }
+      footer { padding: 36px 5%; }
+      .prob-grid { grid-template-columns: repeat(2, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .svc-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .prob-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>잇다</h1>
-        <nav>
-            <ul>
-                <li>서비스 소개</li>
-                <li>제공 서비스</li>
-                <li>솔루션</li>
-                <li>제휴 대학</li>
-            </ul>
-        </nav>
-        <a href="#">제휴 문의</a>
-    </header>
 
-    <section id="intro">
-        <p>대학·기관 전용 커리어 교육 플랫폼</p>
-        <p>120개 대학이 선택한 커리어 교육 파트너, 잇다</p>
-        <p>실명 현직자 네트워크 기반의 커리어 교육 플랫폼. 취업팀 담당자와 함께 학생들의 진로를 설계합니다. 데이터로 증명된 성과, 신뢰할 수 있는 파트너십.</p>
-        <a href="#">제휴 문의하기 →</a>
-    </section>
+<!-- ━━━━ NAV ━━━━ -->
+<nav>
+  <a href="#" class="logo">잇다</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">서비스 소개</a></li>
+      <li><a href="#services">제공 서비스</a></li>
+      <li><a href="#solution">솔루션</a></li>
+      <li><a href="#universities">제휴 대학</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-red">제휴 문의</a>
+  </div>
+</nav>
 
-    <section id="stats">
-        <ul>
-            <li>120+ 전국 제휴 대학</li>
-            <li>40만+ 가입 회원</li>
-            <li>3,500+ 현직자 멘토</li>
-            <li>4만+ 누적 멘토링</li>
-            <li>15,000+ 클래스 진행</li>
-            <li>4.8점 평균 만족도</li>
-        </ul>
-    </section>
+<!-- ━━━━ HERO ━━━━ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">대학·기관 전용 커리어 교육 플랫폼</div>
+      <h1><span>120개 대학</span>이 선택한<br>커리어 교육 파트너,<br>잇다</h1>
+      <p class="hero-desc">
+        실명 현직자 네트워크 기반의 커리어 교육 플랫폼.<br>
+        취업팀 담당자와 함께 학생들의 진로를 설계합니다.<br>
+        데이터로 증명된 성과, 신뢰할 수 있는 파트너십.
+      </p>
+      <a href="#contact" class="btn btn-red btn-red-lg">제휴 문의하기 →</a>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-card"><div class="hero-card-num">120+</div><div class="hero-card-label">전국 제휴 대학</div></div>
+      <div class="hero-card"><div class="hero-card-num">40만+</div><div class="hero-card-label">가입 회원</div></div>
+      <div class="hero-card"><div class="hero-card-num">3,500+</div><div class="hero-card-label">현직자 멘토</div></div>
+      <div class="hero-card"><div class="hero-card-num">4만+</div><div class="hero-card-label">누적 멘토링</div></div>
+      <div class="hero-card"><div class="hero-card-num">15,000+</div><div class="hero-card-label">클래스 진행</div></div>
+      <div class="hero-card"><div class="hero-card-num">4.8점</div><div class="hero-card-label">평균 만족도</div></div>
+    </div>
+  </div>
+</section>
 
-    <section id="problem">
-        <h2>THE PROBLEM</h2>
-        <h3>대학생 커리어 현실</h3>
-        <p>국내 대학생의 진로 불안은 수치로 드러납니다. 잇다는 이 문제를 데이터 기반으로 직시하고, 구조적으로 해결합니다.</p>
-        <ul>
-            <li>64.6% 대졸자 취업률</li>
-            <li>50만 쉬는 청년</li>
-            <li>46.9% 진로 미결정률</li>
-            <li>90% 취업 스트레스</li>
-        </ul>
-    </section>
+<!-- ━━━━ PROBLEM ━━━━ -->
+<section class="problem" id="about">
+  <div class="problem-inner">
+    <div class="sec-header">
+      <span class="sec-tag">The Problem</span>
+      <h2 class="sec-title">대학생 커리어 현실</h2>
+      <p class="sec-desc">국내 대학생의 진로 불안은 수치로 드러납니다.<br>잇다는 이 문제를 데이터 기반으로 직시하고, 구조적으로 해결합니다.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-num">64.6%</div>
+        <div class="prob-title">대졸자 취업률</div>
+        <div class="prob-desc">10명 중 3~4명은 졸업 후에도 취업 트랙을 찾지 못하는 현실</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">50만</div>
+        <div class="prob-title">쉬는 청년</div>
+        <div class="prob-desc">취업도 구직활동도 하지 않는 청년이 50만 명을 넘어선 상황</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">46.9%</div>
+        <div class="prob-title">진로 미결정률</div>
+        <div class="prob-desc">대학 재학생 절반 가까이가 졸업까지 진로를 결정하지 못함</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">90%</div>
+        <div class="prob-title">취업 스트레스</div>
+        <div class="prob-desc">대학생 10명 중 9명이 취업·진로로 인한 심각한 스트레스 경험</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="numbers">
-        <h2>BY THE NUMBERS</h2>
-        <h3>숫자로 보는 잇다</h3>
-        <ul>
-            <li>120+ 전국 제휴 대학</li>
-            <li>15,000+ 클래스 진행 횟수</li>
-            <li>4,000+ 커리어 콘텐츠</li>
-            <li>30만+ 온라인 참여자</li>
-            <li>3,500+ 현직자 멘토</li>
-            <li>40만+ 가입 회원</li>
-        </ul>
-    </section>
+<!-- ━━━━ NUMBERS ━━━━ -->
+<section class="numbers-sec">
+  <div class="numbers-inner">
+    <div class="sec-header">
+      <span class="sec-tag">By the Numbers</span>
+      <h2 class="sec-title">숫자로 보는 잇다</h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="num-card"><div class="n">120+</div><div class="l">전국 제휴 대학</div></div>
+      <div class="num-card"><div class="n">15,000+</div><div class="l">클래스 진행 횟수</div></div>
+      <div class="num-card"><div class="n">4,000+</div><div class="l">커리어 콘텐츠</div></div>
+      <div class="num-card"><div class="n">30만+</div><div class="l">온라인 참여자</div></div>
+      <div class="num-card"><div class="n">3,500+</div><div class="l">현직자 멘토</div></div>
+      <div class="num-card"><div class="n">40만+</div><div class="l">가입 회원</div></div>
+    </div>
+  </div>
+</section>
 
-    <section id="services">
-        <h2>SERVICES</h2>
-        <h3>4가지 핵심 서비스</h3>
-        <p>대학 취업팀과 기관의 니즈에 맞는 다양한 커리어 교육 프로그램을 제공합니다.</p>
-        <div class="service">
-            <h4>SERVICE 01</h4>
-            <h5>현직자 직무특강 · 직무체험</h5>
-            <p>국내 주요 기업 현직자가 직접 진행하는 직무별 특강과 체험 프로그램. 학생들이 현장 언어로 직무를 이해합니다.</p>
-            <ul>
-                <li>오프라인</li>
-                <li>온라인</li>
-                <li>맞춤 기획</li>
-            </ul>
+<!-- ━━━━ SERVICES ━━━━ -->
+<section class="services-sec" id="services">
+  <div class="services-inner">
+    <div class="sec-header">
+      <span class="sec-tag">Services</span>
+      <h2 class="sec-title">4가지 핵심 서비스</h2>
+      <p class="sec-desc">대학 취업팀과 기관의 니즈에 맞는 다양한 커리어 교육 프로그램을 제공합니다.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-label">Service 01</div>
+        <div class="svc-title">현직자 직무특강 · 직무체험</div>
+        <div class="svc-desc">국내 주요 기업 현직자가 직접 진행하는 직무별 특강과 체험 프로그램. 학생들이 현장 언어로 직무를 이해합니다.</div>
+        <div class="svc-tags"><span class="svc-tag">오프라인</span><span class="svc-tag">온라인</span><span class="svc-tag">맞춤 기획</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-label">Service 02</div>
+        <div class="svc-title">현직자 직무 부트캠프</div>
+        <div class="svc-desc">단기 집중형 직무 부트캠프. 현직자 강사진과 함께 실무 프로젝트를 수행하며 포트폴리오를 완성합니다.</div>
+        <div class="svc-tags"><span class="svc-tag">4~8주 과정</span><span class="svc-tag">실무 프로젝트</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-label">Service 03</div>
+        <div class="svc-title">AI 진단검사 · 제휴 서비스</div>
+        <div class="svc-desc">AI 기반 진로·직무 적합도 진단 검사와 다양한 제휴 서비스 연계. 학생 개별 맞춤 커리어 로드맵을 설계합니다.</div>
+        <div class="svc-tags"><span class="svc-tag">AI 진단</span><span class="svc-tag">리포트 제공</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-label">Service 04</div>
+        <div class="svc-title">맞춤형 교육과정 설계</div>
+        <div class="svc-desc">대학·기관의 특성과 학생 수요를 반영한 커스텀 커리큘럼. 학기 단위 운영부터 특별 프로그램까지 전담 지원합니다.</div>
+        <div class="svc-tags"><span class="svc-tag">커스텀 설계</span><span class="svc-tag">전담 운영</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━ SOLUTION ━━━━ -->
+<section class="solution-sec" id="solution">
+  <div class="solution-inner">
+    <div class="sec-header">
+      <span class="sec-tag">Solution</span>
+      <h2 class="sec-title">4단계 커리어 솔루션</h2>
+      <p class="sec-desc">발견부터 경험까지, 잇다의 단계별 커리어 성장 프로세스.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-circle"><span class="sn">STEP 1</span><span class="se">🔍</span></div>
+        <span class="step-kw">발견</span>
+        <div class="step-title">AI 진로검사</div>
+        <div class="step-desc">AI 기반 진로·직무 적합도 진단으로 나만의 강점과 방향을 발견합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle"><span class="sn">STEP 2</span><span class="se">💬</span></div>
+        <span class="step-kw">탐색</span>
+        <div class="step-title">현직자 멘토링</div>
+        <div class="step-desc">실명 현직자와의 1:1 멘토링으로 관심 직무를 깊이 탐색합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle"><span class="sn">STEP 3</span><span class="se">📖</span></div>
+        <span class="step-kw">학습</span>
+        <div class="step-title">직무강의 · 체험</div>
+        <div class="step-desc">직무 특강과 체험 프로그램으로 실무 지식을 쌓고 현장을 경험합니다</div>
+      </div>
+      <div class="step">
+        <div class="step-circle"><span class="sn">STEP 4</span><span class="se">💼</span></div>
+        <span class="step-kw">경험</span>
+        <div class="step-title">직무 부트캠프</div>
+        <div class="step-desc">집중 부트캠프로 실무 프로젝트를 완성하고 취업 경쟁력을 확보합니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━ UNIVERSITIES ━━━━ -->
+<section class="univ-sec" id="universities">
+  <div class="univ-inner">
+    <div class="sec-header">
+      <span class="sec-tag">Partners</span>
+      <h2 class="sec-title">함께하는 제휴 대학</h2>
+    </div>
+    <div class="univ-count">🏫 전국 120개 이상 대학과 함께합니다</div>
+    <div class="univ-group">
+      <div class="univ-group-label">서울 주요 대학</div>
+      <div class="univ-badges">
+        <span class="univ-badge">고려대학교</span>
+        <span class="univ-badge">연세대학교</span>
+        <span class="univ-badge">성균관대학교</span>
+        <span class="univ-badge">한양대학교</span>
+        <span class="univ-badge">중앙대학교</span>
+        <span class="univ-badge">경희대학교</span>
+        <span class="univ-badge">한국외국어대학교</span>
+        <span class="univ-badge">서울시립대학교</span>
+        <span class="univ-badge">숙명여자대학교</span>
+        <span class="univ-badge">동국대학교</span>
+        <span class="univ-badge">건국대학교</span>
+        <span class="univ-badge">홍익대학교</span>
+      </div>
+    </div>
+    <div class="univ-group">
+      <div class="univ-group-label">수도권 · 지방 대학</div>
+      <div class="univ-badges">
+        <span class="univ-badge">인하대학교</span>
+        <span class="univ-badge">아주대학교</span>
+        <span class="univ-badge">한국항공대학교</span>
+        <span class="univ-badge">가천대학교</span>
+        <span class="univ-badge">부산대학교</span>
+        <span class="univ-badge">경북대학교</span>
+        <span class="univ-badge">전남대학교</span>
+        <span class="univ-badge">충남대학교</span>
+        <span class="univ-badge">강원대학교</span>
+        <span class="univ-badge">제주대학교</span>
+        <span class="univ-badge">한림대학교</span>
+        <span class="univ-badge">영남대학교</span>
+        <span class="univ-more">+ 100개교 이상</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━ CONTACT ━━━━ -->
+<section class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="sec-header">
+      <span class="sec-tag">Contact</span>
+      <h2 class="sec-title">제휴 문의</h2>
+      <p class="sec-desc">대학 취업팀 및 교육 기관 담당자라면 지금 바로 문의해 주세요.<br>맞춤형 제안서와 함께 전담 매니저가 연락드립니다.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>연락처 안내</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon">📞</div>
+            <div>
+              <div class="c-label">전화 문의</div>
+              <div class="c-val">02-2653-1022</div>
+              <div class="c-sub">평일 09:00 – 18:00</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">✉️</div>
+            <div>
+              <div class="c-label">이메일 문의</div>
+              <div class="c-val">bd@itdaa.net</div>
+              <div class="c-sub">24시간 접수 · 1영업일 내 회신</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">📍</div>
+            <div>
+              <div class="c-label">오시는 길</div>
+              <div class="c-val" style="font-size:0.92rem; line-height:1.65;">서울특별시 성동구 뚝섬로1나길 5<br>헤이그라운드 성수시작점 G402호</div>
+              <div class="c-sub">2호선 뚝섬역 1번 출구 도보 5분</div>
+            </div>
+          </div>
         </div>
-        <div class="service">
-            <h4>SERVICE 02</h4>
-            <h5>현직자 직무 부트캠프</h5>
-            <p>단기 집중형 직무 부트캠프. 현직자 강사진과 함께 실무 프로젝트를 수행하며 포트폴리오를 완성합니다.</p>
-            <ul>
-                <li>4~8주 과정</li>
-                <li>실무 프로젝트</li>
-            </ul>
-        </div>
-        <div class="service">
-            <h4>SERVICE 03</h4>
-            <h5>AI 진단검사 · 제휴 서비스</h5>
-            <p>AI 기반 진로·직무 적합도 진단 검사와 다양한 제휴 서비스 연계. 학생 개별 맞춤 커리어 로드맵을 설계합니다.</p>
-            <ul>
-                <li>AI 진단</li>
-                <li>리포트 제공</li>
-            </ul>
-        </div>
-        <div class="service">
-            <h4>SERVICE 04</h4>
-            <h5>맞춤형 교육과정 설계</h5>
-            <p>대학·기관의 특성과 학생 수요를 반영한 커스텀 커리큘럼. 학기 단위 운영부터 특별 프로그램까지 전담 지원합니다.</p>
-            <ul>
-                <li>커스텀 설계</li>
-                <li>전담 운영</li>
-            </ul>
-        </div>
-    </section>
+      </div>
+      <div class="map-card">
+        <div id="naver-map"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="solution">
-        <h2>SOLUTION</h2>
-        <h3>4단계 커리어 솔루션</h3>
-        <p>발견부터 경험까지, 잇다의 단계별 커리어 성장 프로세스.</p>
-        <div class="step">
-            <h4>STEP 1 🔍 발견</h4>
-            <p>AI 진로검사</p>
-            <p>AI 기반 진로·직무 적합도 진단으로 나만의 강점과 방향을 발견합니다</p>
-        </div>
-        <div class="step">
-            <h4>STEP 2 💬 탐색</h4>
-            <p>현직자 멘토링</p>
-            <p>실명 현직자와의 1:1 멘토링으로 관심 직무를 깊이 탐색합니다</p>
-        </div>
-        <div class="step">
-            <h4>STEP 3 📖 학습</h4>
-            <p>직무강의 · 체험</p>
-            <p>직무 특강과 체험 프로그램으로 실무 지식을 쌓고 현장을 경험합니다</p>
-        </div>
-        <div class="step">
-            <h4>STEP 4 💼 경험</h4>
-            <p>직무 부트캠프</p>
-            <p>집중 부트캠프로 실무 프로젝트를 완성하고 취업 경쟁력을 확보합니다</p>
-        </div>
-    </section>
+<!-- ━━━━ FOOTER ━━━━ -->
+<footer>
+  <div>
+    <div class="footer-logo">잇다</div>
+    <div class="footer-info">
+      국내 유일 실명 기반 커리어 교육 플랫폼<br>
+      서울특별시 성동구 뚝섬로1나길 5 헤이그라운드 성수시작점 G402호
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 잇다. All rights reserved.</div>
+</footer>
 
-    <section id="partners">
-        <h2>PARTNERS</h2>
-        <h3>함께하는 제휴 대학</h3>
-        <!-- Add partner list here -->
-    </section>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=Tg9UhRRhJ21hhdxIe7mmwqY6nwvDfKFqiHUmiAxK"></script>
+<script>
+  var map = new naver.maps.Map('naver-map', {
+    center: new naver.maps.LatLng(37.54704, 127.05644),
+    zoom: 17
+  });
+  var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.54704, 127.05644),
+    map: map,
+    title: '헤이그라운드 성수시작점 G402호'
+  });
+</script>
 
-    <section id="contact">
-        <h2>CONTACT</h2>
-        <h3>오시는 길</h3>
-        <p>서울 성동구 뚝섬로1나길 5 헤이그라운드 성수시작점 G402호</p>
-        <div id="map" style="width: 100%; height: 400px; margin-top: 16px;"></div>
-    </section>
-
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=Tg9UhRRhJ21hhdxIe7mmwqY6nwvDfKFqiHUmiAxK"></script>
-    <script>
-        var map = new naver.maps.Map('map', {
-            center: new naver.maps.LatLng(37.54704, 127.05644),
-            zoom: 17
-        });
-        var marker = new naver.maps.Marker({
-            position: new naver.maps.LatLng(37.54704, 127.05644),
-            map: map,
-            title: '헤이그라운드 성수시작점 G402호'
-        });
-    </script>
 </body>
 </html>
